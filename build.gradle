@@ -1,8 +1,43 @@
 buildscript {
-    repositories { google(); mavenCentral() }
-    dependencies { classpath 'com.android.tools.build:gradle:7.4.2' }
+    ext {
+        // Android SDK versions
+        compileSdkVersion = 34
+        targetSdkVersion = 34
+        minSdkVersion = 24
+        buildToolsVersion = "34.0.0"
+
+        // Versi AGP & Kotlin
+        gradlePluginVersion = "7.4.2"
+        kotlinVersion = "1.8.22"
+
+        // Versi library umum BlackBox
+        androidxAppcompatVersion = "1.6.1"
+        annotationVersion = "1.5.0"
+        coreKtxVersion = "1.10.1"
+
+        // Info aplikasi
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:${gradlePluginVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+    }
 }
+
 allprojects {
-    repositories { google(); mavenCentral(); maven { url 'https://jitpack.io' } }
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
 }
-task clean(type: Delete) { delete rootProject.buildDir }
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
